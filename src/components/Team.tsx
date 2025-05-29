@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FaInstagram, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
 
