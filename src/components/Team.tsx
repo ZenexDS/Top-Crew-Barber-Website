@@ -1,17 +1,24 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaInstagram, FaFacebook, FaTiktok, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { FaInstagram, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+
+// Instagram gradient style
+const instagramGradientStyle = `
+  .instagram-gradient {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  }
+`;
 
 const barbers = [
   {
     id: 1,
-    name: 'Barber AL',
+    name: 'Barber Al',
     role: 'Master Barber & Owner',
     image: '/AL.jpeg',
-    bio: 'With over a decade of experience, AL brings unparalleled expertise and artistry to every cut.',
+    bio: 'With over three decades of experience, Al brings unparalleled expertise and artistry to every cut.',
     social: {
       instagram: 'https://www.instagram.com/barber_al_/',
     }
@@ -174,6 +181,7 @@ export default function Team() {
 
   return (
     <section id="team" className="py-16 sm:py-24 bg-gray-50">
+      <style jsx global>{instagramGradientStyle}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Meet Our Team</h2>
@@ -240,15 +248,16 @@ export default function Team() {
                       
                       <div className="flex items-center justify-between">
                         <div className="flex space-x-4">
-                          <a href={barber.social.instagram} className="text-gray-400 hover:text-black transition-colors">
-                            <FaInstagram size={20} />
+                          <a href={barber.social.instagram} className="instagram-gradient p-2 rounded-full transition-transform hover:scale-110" 
+                             target="_blank" rel="noopener noreferrer">
+                            <FaInstagram size={24} className="text-white" />
                           </a>
                         </div>
                         <Link
                           href={`/book?barber=${barber.id}`}
                           className="bg-black text-white px-4 sm:px-6 py-2 rounded-md hover:bg-gray-800 transition-colors text-sm sm:text-base"
                         >
-                          {barber.name === 'Barber AL' ? 'Book with Al' : `Book with ${barber.name.split(' ')[0]}`}
+                          {barber.name === 'Barber Al' ? 'Book with Al' : `Book with ${barber.name.split(' ')[0]}`}
                         </Link>
                       </div>
                     </div>

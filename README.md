@@ -1,59 +1,57 @@
-# CleanCuts Barber Website
+# Top Crew Barbershop Website
 
-A modern website for CleanCuts Barber Shop featuring online booking, service information, and contact details.
+A modern, responsive website for Top Crew Barbershop in London, Ontario, featuring online booking, service information, barber profiles, and location details.
 
-## Setup
+## Features
+
+- **Modern Design**: Clean, responsive interface that works on mobile, tablet, and desktop
+- **Location Selection**: Modal for users to select between multiple barbershop locations
+- **Online Booking**: Integration with Square Appointments for seamless booking
+- **Barber Profiles**: Showcasing the team with professional information and Instagram links
+- **Service Information**: Displaying available haircut and grooming services with pricing
+- **Gallery**: Instagram feed integration showing recent work
+- **Contact Information**: Address, phone, email and business hours
+- **Google Maps Integration**: Easy location finding
+
+## Technology Stack
+
+- **Framework**: Next.js 15
+- **Styling**: Tailwind CSS
+- **Icons**: React Icons
+- **Deployment**: Vercel
+
+## Development
 
 1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Configure AWS credentials:
-   - Create a `.env.local` file in the root directory
-   - Add the following environment variables with your AWS credentials:
-   ```
-   AWS_ACCESS_KEY_ID=your_access_key_here
-   AWS_SECRET_ACCESS_KEY=your_secret_key_here
-   AWS_REGION=your_aws_region (default: us-east-1)
-   DYNAMODB_TABLE_NAME=customerBookings
-   ```
-
-3. Run the development server:
+2. Run the development server:
    ```bash
    npm run dev
    ```
 
-## DynamoDB Schema
-
-The application uses a DynamoDB table with the following structure:
-
-- Table Name: `customerBookings`
-- Partition Key: `date` (String) - Format: YYYY-MM-DD
-- Sort Key: `time#barberId#customerId` (String) - The attribute name is literally "time#barberId#customerId"
-
-Example item:
-```json
-{
-  "date": "2023-11-25",
-  "time#barberId#customerId": "3:30 PM#1#customer-12345",
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "phone": "5551234567",
-  "notes": "Short on sides, trim on top",
-  "barberName": "Mark Smith",
-  "barberId": "1",
-  "time": "3:30 PM",
-  "status": "confirmed",
-  "createdAt": "2023-11-20T14:30:00Z"
-}
-```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the site
 
 ## Deployment
 
-This is a Next.js application that can be deployed to platforms like Vercel, Render, or AWS Amplify.
+The website is configured for deployment on Vercel. The build process includes:
 
-When deploying to a hosting service, make sure to set the environment variables (AWS credentials and region) in the hosting service's settings.
+- Code quality checks with ESLint
+- Production optimization with Next.js
+- Automatic asset optimization
 
-**IMPORTANT:** Never commit your actual AWS credentials to the repository. Always use environment variables for secrets.
+## Customization
+
+The site can be easily customized by modifying:
+- **Constants**: Update locations, hours, and URLs in `src/utils/constants.ts`
+- **Team Members**: Edit barber profiles in `src/components/Team.tsx`
+- **Services**: Update service offerings in `src/components/Services.tsx`
+
+## Project Structure
+
+- `src/app/*` - Next.js app router pages
+- `src/components/*` - Reusable UI components
+- `src/utils/*` - Utility functions and constants
+- `public/*` - Static assets like images

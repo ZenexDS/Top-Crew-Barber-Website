@@ -1,7 +1,6 @@
 'use client';
 
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCalendarCheck } from 'react-icons/fa';
-import Link from 'next/link';
 import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
 
 const businessHours = [

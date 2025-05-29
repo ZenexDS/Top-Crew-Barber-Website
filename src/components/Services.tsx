@@ -1,5 +1,4 @@
 import { FaScissors, FaUserPen, FaSprayCanSparkles, FaChildren } from 'react-icons/fa6';
-import Link from 'next/link';
 import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
 
 const services = [

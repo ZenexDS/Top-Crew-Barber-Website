@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
-import { useEffect } from 'react';
 import Script from 'next/script';
 
 export default function GalleryPage() {
