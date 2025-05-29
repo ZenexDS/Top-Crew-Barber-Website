@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaInstagram, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
 
 // Instagram gradient style
 const instagramGradientStyle = `
@@ -17,7 +18,7 @@ const barbers = [
     id: 1,
     name: 'Barber Al',
     role: 'Master Barber & Owner',
-    image: '/AL.jpeg',
+    image: '/Al.jpeg',
     bio: 'With over three decades of experience, Al brings unparalleled expertise and artistry to every cut.',
     social: {
       instagram: 'https://www.instagram.com/barber_al_/',
@@ -47,7 +48,7 @@ const barbers = [
     id: 4,
     name: 'KJ',
     role: 'Barber',
-    image: '/Kj.jpeg',
+    image: '/KJ.jpeg',
     bio: 'KJ delivers exceptional cuts with precision and style, specializing in creating the perfect look for each client.',
     social: {
       instagram: '#', // Placeholder, as no Instagram link was provided for KJ
@@ -253,12 +254,14 @@ export default function Team() {
                             <FaInstagram size={24} className="text-white" />
                           </a>
                         </div>
-                        <Link
-                          href={`/book?barber=${barber.id}`}
+                        <a
+                          href={SQUARE_APPOINTMENTS_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="bg-black text-white px-4 sm:px-6 py-2 rounded-md hover:bg-gray-800 transition-colors text-sm sm:text-base"
                         >
                           {barber.name === 'Barber Al' ? 'Book with Al' : `Book with ${barber.name.split(' ')[0]}`}
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>
