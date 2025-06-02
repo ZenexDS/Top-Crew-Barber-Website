@@ -82,7 +82,7 @@ const Navbar = () => {
           <div className="flex justify-between h-16 items-center">
             <div className="flex-shrink-0">
               <Link href="/" className="block">
-                <h1 className="text-2xl font-bold text-black">💈TOP CREW</h1>
+                <h1 className="text-2xl font-bold text-black">TOP CREW</h1>
               </Link>
             </div>
 

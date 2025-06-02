@@ -248,10 +248,12 @@ export default function Team() {
                       
                       <div className="flex items-center justify-between">
                         <div className="flex space-x-4">
-                          <a href={barber.social.instagram} className="instagram-gradient p-2 rounded-full transition-transform hover:scale-110" 
-                             target="_blank" rel="noopener noreferrer">
-                            <FaInstagram size={24} className="text-white" />
-                          </a>
+                          {barber.social.instagram !== '#' && (
+                            <a href={barber.social.instagram} className="instagram-gradient p-2 rounded-full transition-transform hover:scale-110" 
+                              target="_blank" rel="noopener noreferrer">
+                              <FaInstagram size={24} className="text-white" />
+                            </a>
+                          )}
                         </div>
                         <a
                           href={SQUARE_APPOINTMENTS_URL}

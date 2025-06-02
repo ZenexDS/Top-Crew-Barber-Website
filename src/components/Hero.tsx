@@ -23,7 +23,7 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center">
         <div className="flex flex-col sm:flex-row items-center justify-center w-full">
-          <div className="px-4 py-1 sm:px-6 sm:py-2 bg-white text-gray-900 rounded-md mb-4 sm:mb-0 text-sm sm:text-base">
+          <div className="hidden sm:block px-4 py-1 sm:px-6 sm:py-2 bg-white text-gray-900 rounded-md mb-4 sm:mb-0 text-sm sm:text-base">
             <span className="font-semibold">SINCE</span>
           </div>
           
@@ -35,7 +35,7 @@ const Hero = () => {
             </p>
           </div>
           
-          <div className="px-4 py-1 sm:px-6 sm:py-2 bg-white text-gray-900 rounded-md mt-4 sm:mt-0 text-sm sm:text-base">
+          <div className="hidden sm:block px-4 py-1 sm:px-6 sm:py-2 bg-white text-gray-900 rounded-md mt-4 sm:mt-0 text-sm sm:text-base">
             <span className="font-semibold">2014</span>
           </div>
         </div>
