@@ -9,7 +9,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Team photo.jpeg"
+          src="/Team-photo.jpeg"
           alt="TopCrew Barbershop Team"
           fill
           priority
