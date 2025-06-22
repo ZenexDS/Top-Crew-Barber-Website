@@ -1,15 +1,14 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { LOCATIONS } from '@/utils/constants';
+import { useLocation } from '@/utils/LocationContext';
 
 export default function LocationSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { currentLocation, setCurrentLocation } = useLocation();
   
-  const currentLocation = LOCATIONS.find(loc => loc.current) || LOCATIONS[0];
-
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -27,6 +26,17 @@ export default function LocationSwitcher() {
     };
   }, [isOpen]);
 
+  const handleLocationChange = (location: typeof LOCATIONS[0]) => {
+    setCurrentLocation(location);
+    setIsOpen(false);
+    
+    // Scroll to top of page when location changes
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button 
@@ -42,7 +52,7 @@ export default function LocationSwitcher() {
           <div className="py-1">
             {LOCATIONS.map((location, index) => (
               <div key={index} className="px-3 py-2">
-                {location.current ? (
+                {location.id === currentLocation.id ? (
                   <div className="flex flex-col">
                     <span className="font-medium text-black">{location.shortName}</span>
                     <span className="text-xs text-gray-500">{location.address}</span>
@@ -50,15 +60,14 @@ export default function LocationSwitcher() {
                     <span className="text-xs mt-1 text-green-600">Current Location</span>
                   </div>
                 ) : (
-                  <Link 
-                    href={location.url || '#'} 
-                    className="flex flex-col hover:bg-gray-50 rounded p-1 -ml-1"
-                    onClick={() => setIsOpen(false)}
+                  <button 
+                    onClick={() => handleLocationChange(location)}
+                    className="flex flex-col hover:bg-gray-50 rounded p-1 -ml-1 w-full text-left"
                   >
                     <span className="font-medium">{location.shortName}</span>
                     <span className="text-xs text-gray-500">{location.address}</span>
                     <span className="text-xs text-gray-500">{location.city}</span>
-                  </Link>
+                  </button>
                 )}
               </div>
             ))}

@@ -1,7 +1,7 @@
 'use client';
 
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCalendarCheck } from 'react-icons/fa';
-import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
+import { useLocation } from '@/utils/LocationContext';
 
 const businessHours = [
   { day: 'Monday', hours: '10:00 AM - 7:00 PM' },
@@ -14,13 +14,18 @@ const businessHours = [
 ];
 
 const Contact = () => {
+  const { currentLocation, isWharncliffe } = useLocation();
+
   return (
     <section id="contact" className="py-12 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Contact Us</h2>
           <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            Visit us at our location or book your appointment online today.
+            {isWharncliffe 
+              ? 'Visit us at our Wharncliffe location for walk-in service.'
+              : 'Visit us at our location or book your appointment online today.'
+            }
           </p>
         </div>
 
@@ -36,7 +41,10 @@ const Contact = () => {
                   <FaMapMarkerAlt className="text-black text-lg sm:text-xl mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Location</h4>
-                    <p className="text-gray-600 text-sm sm:text-base">312 Commissioners Rd W<br />London, ON N6J 1Y3</p>
+                    <p className="text-gray-600 text-sm sm:text-base">
+                      {currentLocation.address}<br />
+                      {currentLocation.city}
+                    </p>
                   </div>
                 </div>
 
@@ -45,7 +53,9 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Phone</h4>
                     <p className="text-gray-600 text-sm sm:text-base">
-                      <a href="tel:5196018001" className="hover:underline">(519) 601-8001</a>
+                      <a href={`tel:${currentLocation.phone.replace(/[^0-9]/g, '')}`} className="hover:underline">
+                        {currentLocation.phone}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -59,15 +69,27 @@ const Contact = () => {
                 </div>
                 
                 <div className="mt-6 sm:mt-8">
-                  <a
-                    href={SQUARE_APPOINTMENTS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center bg-black text-white px-5 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
-                  >
-                    <FaCalendarCheck className="mr-2" />
-                    Book An Appointment
-                  </a>
+                  {isWharncliffe ? (
+                    // Wharncliffe location - Call us CTA
+                    <a
+                      href={currentLocation.callUrl}
+                      className="inline-flex items-center bg-black text-white px-5 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
+                    >
+                      <FaPhone className="mr-2" />
+                      Call Us
+                    </a>
+                  ) : (
+                    // Commissioners location - Book appointment CTA
+                    <a
+                      href={currentLocation.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center bg-black text-white px-5 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
+                    >
+                      <FaCalendarCheck className="mr-2" />
+                      Book An Appointment
+                    </a>
+                  )}
                 </div>
               </div>
               
@@ -94,15 +116,15 @@ const Contact = () => {
           {/* Map Embed */}
           <div className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg h-64 sm:h-96">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2919.304747936326!2d-81.28699072346596!3d42.97177839681292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882ef2124be9f313%3A0x93a1f8fdd7d1fa92!2s312%20Commissioners%20Rd%20W%2C%20London%2C%20ON%20N6J%201Y3%2C%20Canada!5e0!3m2!1sen!2sus!4v1715894825466!5m2!1sen!2sus" 
+              src={currentLocation.mapUrl}
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
               allowFullScreen={true} 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              title="TopCrew Barbershop Location"
-              aria-label="Google Maps showing TopCrew Barbershop location"
+              title={`TopCrew Barbershop - ${currentLocation.shortName} Location`}
+              aria-label={`Google Maps showing TopCrew Barbershop ${currentLocation.shortName} location`}
             ></iframe>
           </div>
         </div>

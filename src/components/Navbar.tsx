@@ -1,15 +1,16 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaPhone } from 'react-icons/fa';
 import LocationSwitcher from './LocationSwitcher';
-import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
+import { useLocation } from '@/utils/LocationContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { currentLocation, isWharncliffe } = useLocation();
 
   // Add scroll event listener
   useEffect(() => {
@@ -66,6 +67,11 @@ const Navbar = () => {
     { name: 'Contact', href: '/#contact' },
   ];
 
+  // Filter out Team menu item for Wharncliffe location
+  const filteredMenuItems = isWharncliffe 
+    ? menuItems.filter(item => item.name !== 'Team')
+    : menuItems;
+
   return (
     <>
       {/* Mobile background overlay - positioned below the navbar */}
@@ -89,7 +95,7 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-8">
-                {menuItems.map((item) => (
+                {filteredMenuItems.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
@@ -99,14 +105,24 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <LocationSwitcher />
-                <a
-                  href={SQUARE_APPOINTMENTS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300"
-                >
-                  Book Now
-                </a>
+                {isWharncliffe ? (
+                  <a
+                    href={currentLocation.callUrl}
+                    className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 flex items-center"
+                  >
+                    <FaPhone className="mr-2" />
+                    Call Us
+                  </a>
+                ) : (
+                  <a
+                    href={currentLocation.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300"
+                  >
+                    Book Now
+                  </a>
+                )}
               </div>
             </div>
 
@@ -140,7 +156,7 @@ const Navbar = () => {
           <div className="px-4 py-4 max-h-[80vh] overflow-y-auto">
             {/* Centered menu items */}
             <div className="flex flex-col items-center text-center gap-1 py-3">
-              {menuItems.map((item) => (
+              {filteredMenuItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -153,17 +169,28 @@ const Navbar = () => {
             </div>
             
             <div className="mt-5 pt-3 border-t border-gray-100">
-              {/* Book Now button */}
+              {/* Call Us / Book Now button */}
               <div className="mb-8">
-                <a
-                  href={SQUARE_APPOINTMENTS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-full py-3 px-4 bg-black text-white text-center rounded-lg font-medium hover:bg-gray-800 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Book Now
-                </a>
+                {isWharncliffe ? (
+                  <a
+                    href={currentLocation.callUrl}
+                    className="flex items-center justify-center w-full py-3 px-4 bg-black text-white text-center rounded-lg font-medium hover:bg-gray-800 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <FaPhone className="mr-2" />
+                    Call Us
+                  </a>
+                ) : (
+                  <a
+                    href={currentLocation.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-full py-3 px-4 bg-black text-white text-center rounded-lg font-medium hover:bg-gray-800 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Book Now
+                  </a>
+                )}
               </div>
             </div>
           </div>

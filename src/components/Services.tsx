@@ -1,5 +1,6 @@
-import { FaScissors, FaUserPen, FaSprayCanSparkles, FaChildren } from 'react-icons/fa6';
-import { SQUARE_APPOINTMENTS_URL } from '@/utils/constants';
+import { FaScissors, FaUserPen, FaSprayCanSparkles, FaChildren, FaPhone } from 'react-icons/fa6';
+import { useLocation } from '@/utils/LocationContext';
+import WalkInBanner from './WalkInBanner';
 
 const services = [
   {
@@ -33,9 +34,18 @@ const services = [
 ];
 
 const Services = () => {
+  const { currentLocation, isWharncliffe } = useLocation();
+
   return (
     <section id="services" className="py-16 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Walk-in Banner positioned above the services header */}
+        {isWharncliffe && (
+          <div className="mb-8">
+            <WalkInBanner />
+          </div>
+        )}
+        
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Our Services</h2>
           <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto">
@@ -63,14 +73,26 @@ const Services = () => {
         </div>
 
         <div className="mt-10 sm:mt-16 text-center">
-          <a
-            href={SQUARE_APPOINTMENTS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-black text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-semibold hover:bg-gray-800 transition-colors duration-300 w-full sm:w-auto"
-          >
-            Book Your Service
-          </a>
+          {isWharncliffe ? (
+            // Wharncliffe location - Call us CTA
+            <a
+              href={currentLocation.callUrl}
+              className="inline-flex items-center bg-black text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-semibold hover:bg-gray-800 transition-colors duration-300 w-full sm:w-auto"
+            >
+              <FaPhone className="mr-2" />
+              Call Us
+            </a>
+          ) : (
+            // Commissioners location - Book appointment CTA
+            <a
+              href={currentLocation.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-black text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-semibold hover:bg-gray-800 transition-colors duration-300 w-full sm:w-auto"
+            >
+              Book Your Service
+            </a>
+          )}
         </div>
       </div>
     </section>

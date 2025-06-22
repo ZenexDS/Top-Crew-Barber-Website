@@ -1,11 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { LOCATIONS } from '@/utils/constants';
+import { useLocation } from '@/utils/LocationContext';
 
 export default function LocationPicker() {
   const [isOpen, setIsOpen] = useState(false);
+  const { setCurrentLocation } = useLocation();
   
   useEffect(() => {
     // Check if user has already selected a location in this session
@@ -17,6 +18,17 @@ export default function LocationPicker() {
       sessionStorage.setItem('locationSelected', 'true');
     }
   }, []);
+
+  const handleLocationSelect = (location: typeof LOCATIONS[0]) => {
+    setCurrentLocation(location);
+    setIsOpen(false);
+    
+    // Scroll to top of page when location is selected
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   if (!isOpen) return null;
 
@@ -51,21 +63,12 @@ export default function LocationPicker() {
                   <p className="text-gray-600 text-sm sm:text-base">{location.address}</p>
                   <p className="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">{location.city}</p>
                   
-                  {location.current ? (
-                    <button 
-                      onClick={() => setIsOpen(false)}
-                      className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors text-sm sm:text-base"
-                    >
-                      Select This Location
-                    </button>
-                  ) : (
-                    <Link 
-                      href={location.url || '#'}
-                      className="block text-center w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300 transition-colors text-sm sm:text-base"
-                    >
-                      Go To This Location
-                    </Link>
-                  )}
+                  <button 
+                    onClick={() => handleLocationSelect(location)}
+                    className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors text-sm sm:text-base"
+                  >
+                    Select This Location
+                  </button>
                 </div>
               </div>
             ))}
