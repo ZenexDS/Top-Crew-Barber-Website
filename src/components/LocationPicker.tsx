@@ -63,12 +63,12 @@ export default function LocationPicker() {
                   <p className="text-gray-600 text-sm sm:text-base">{location.address}</p>
                   <p className="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">{location.city}</p>
                   
-                  <button 
+                    <button 
                     onClick={() => handleLocationSelect(location)}
-                    className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors text-sm sm:text-base"
-                  >
-                    Select This Location
-                  </button>
+                      className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors text-sm sm:text-base"
+                    >
+                      Select This Location
+                    </button>
                 </div>
               </div>
             ))}

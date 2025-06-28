@@ -71,7 +71,7 @@ const Contact = () => {
                 <div className="mt-6 sm:mt-8">
                   {isWharncliffe ? (
                     // Wharncliffe location - Call us CTA
-                    <a
+                  <a
                       href={currentLocation.callUrl}
                       className="inline-flex items-center bg-black text-white px-5 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
                     >
@@ -82,13 +82,13 @@ const Contact = () => {
                     // Commissioners location - Book appointment CTA
                     <a
                       href={currentLocation.bookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center bg-black text-white px-5 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
-                    >
-                      <FaCalendarCheck className="mr-2" />
-                      Book An Appointment
-                    </a>
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-black text-white px-5 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
+                  >
+                    <FaCalendarCheck className="mr-2" />
+                    Book An Appointment
+                  </a>
                   )}
                 </div>
               </div>

@@ -106,7 +106,7 @@ const Navbar = () => {
                 ))}
                 <LocationSwitcher />
                 {isWharncliffe ? (
-                  <a
+                <a
                     href={currentLocation.callUrl}
                     className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 flex items-center"
                   >
@@ -116,12 +116,12 @@ const Navbar = () => {
                 ) : (
                   <a
                     href={currentLocation.bookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300"
-                  >
-                    Book Now
-                  </a>
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300"
+                >
+                  Book Now
+                </a>
                 )}
               </div>
             </div>
@@ -172,7 +172,7 @@ const Navbar = () => {
               {/* Call Us / Book Now button */}
               <div className="mb-8">
                 {isWharncliffe ? (
-                  <a
+                <a
                     href={currentLocation.callUrl}
                     className="flex items-center justify-center w-full py-3 px-4 bg-black text-white text-center rounded-lg font-medium hover:bg-gray-800 transition-colors"
                     onClick={() => setIsOpen(false)}
@@ -183,13 +183,13 @@ const Navbar = () => {
                 ) : (
                   <a
                     href={currentLocation.bookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full py-3 px-4 bg-black text-white text-center rounded-lg font-medium hover:bg-gray-800 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Book Now
-                  </a>
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-full py-3 px-4 bg-black text-white text-center rounded-lg font-medium hover:bg-gray-800 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Book Now
+                </a>
                 )}
               </div>
             </div>
