@@ -65,7 +65,7 @@ const barbers = [
   {
     id: 6,
     name: 'Arnit',
-    role: 'Junior Barber',
+    role: 'Barber',
     image: '/Arnit.jpeg',
     bio: 'Arnit brings enthusiasm and skill to every haircut, creating styles that enhance your natural features.',
     social: {
@@ -75,7 +75,7 @@ const barbers = [
   {
     id: 7,
     name: 'Ahmad',
-    role: 'Junior Barber',
+    role: 'Barber',
     image: '/Ahmad.jpeg',
     bio: 'Ahmad combines technical skill with a keen eye for detail, ensuring each client gets a personalized experience.',
     social: {
@@ -85,7 +85,7 @@ const barbers = [
   {
     id: 8,
     name: 'Noor',
-    role: 'Junior Barber',
+    role: 'Barber',
     image: '/noor_photo_2.jpg',
     bio: 'Noor brings fresh perspective and dedication to every cut, ensuring clients leave with confidence and style.',
     social: {
@@ -95,7 +95,7 @@ const barbers = [
   {
     id: 9,
     name: 'Andi',
-    role: 'Junior Barber',
+    role: 'Barber',
     image: '/Andy_photo_3.jpg',
     bio: 'Andi combines creativity with precision, delivering exceptional cuts that reflect each client\'s unique style.',
     social: {
