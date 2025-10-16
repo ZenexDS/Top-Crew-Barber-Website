@@ -34,16 +34,6 @@ const barbers = [
   },
   {
     id: 3,
-    name: 'Erdi',
-    role: 'Barber',
-    image: '/Erdie.jpeg',
-    bio: 'Erdi brings creativity and skill to every haircut, ensuring clients leave with a style that suits them perfectly.',
-    social: {
-      instagram: 'https://www.instagram.com/erdiblends/',
-    }
-  },
-  {
-    id: 4,
     name: 'KJ',
     role: 'Barber',
     image: '/KJ.jpeg',
@@ -53,7 +43,7 @@ const barbers = [
     }
   },
   {
-    id: 5,
+    id: 4,
     name: 'Gramos',
     role: 'Barber',
     image: '/Gramos.jpeg',
@@ -63,7 +53,7 @@ const barbers = [
     }
   },
   {
-    id: 6,
+    id: 5,
     name: 'Arnit',
     role: 'Barber',
     image: '/Arnit.jpeg',
@@ -73,7 +63,7 @@ const barbers = [
     }
   },
   {
-    id: 7,
+    id: 6,
     name: 'Ahmad',
     role: 'Barber',
     image: '/Ahmad.jpeg',
@@ -83,7 +73,7 @@ const barbers = [
     }
   },
   {
-    id: 8,
+    id: 7,
     name: 'Noor',
     role: 'Barber',
     image: '/noor_photo_2.jpg',
@@ -93,7 +83,7 @@ const barbers = [
     }
   },
   {
-    id: 9,
+    id: 8,
     name: 'Andi',
     role: 'Barber',
     image: '/Andy_photo_3.jpg',
