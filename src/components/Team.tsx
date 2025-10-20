@@ -64,16 +64,6 @@ const barbers = [
   },
   {
     id: 6,
-    name: 'Ahmad',
-    role: 'Barber',
-    image: '/Ahmad.jpeg',
-    bio: 'Ahmad combines technical skill with a keen eye for detail, ensuring each client gets a personalized experience.',
-    social: {
-      instagram: 'https://www.instagram.com/br._ahmad/',
-    }
-  },
-  {
-    id: 7,
     name: 'Noor',
     role: 'Barber',
     image: '/noor_photo_2.jpg',
@@ -83,7 +73,7 @@ const barbers = [
     }
   },
   {
-    id: 8,
+    id: 7,
     name: 'Andi',
     role: 'Barber',
     image: '/Andy_photo_3.jpg',
